@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.11;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol";
+//import "https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol";
+//import "@OpenZeppelin/openzeppelin-contracts/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Voting is Ownable {
 
@@ -25,7 +27,7 @@ contract Voting is Ownable {
         ProposalsRegistrationEnded,
         VotingSessionStarted,
         VotingSessionEnded,
-        VotesTallied,
+        VotesTallied
     }   
 
     WorkflowStatus currentWorkflowStatus;
@@ -46,6 +48,10 @@ contract Voting is Ownable {
 
     constructor() public {
         currentWorkflowStatus = WorkflowStatus.RegisteringVoters;
+    }
+
+    function getCurrentWFStatus() public view returns (WorkflowStatus) {
+        return currentWorkflowStatus;
     }
 
     function registerVoter(address _voter) external onlyOwner {
